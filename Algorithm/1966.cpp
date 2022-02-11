@@ -14,7 +14,7 @@ using namespace std;
 int main() {
 	int T;
 	cin >> T;
-
+	
 	for (int i = 0; i < T; i++) {
 		int n, m; //문서의 개수, 몇번째
 		int cnt = 0;
