@@ -11,28 +11,34 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
-int result[3];
-int map[2200][2200];
+int N;
+string n[65];
 
-bool check(int row, int col, int num) {
-	// 시작점
-	int start = map[row][col];
-	for (int i = row; i < row + num; i++) {
-		for (int j = col; j < col + num; j++) {
-			if (start != map[i][j])
-				return false;
+void recur(int x, int y, int size) {
+	char color = n[x][y];
+	for (int i = x; i < x + size; i++) {
+		for (int j = y; j < y + size; j++) {
+			if (n[i][j] != color) {
+				cout << '(';
+				recur(x, y, size / 2); //제 2사분면
+				recur(x, y + size / 2, size / 2); //제 3사분면
+				recur(x + size / 2, y, size / 2); //제 1사분면
+				recur(x + size / 2, y + size / 2, size / 2); //제 4사분면
+				cout << ')';
+				return;
+			}
 		}
 	}
-	return true;
+	cout << color;
 }
 
-void divide(int ros, int col, int num) {
-	int(check(row, col, num)) {
-		result[map[row][col]]++;
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		cin >> n[i];
 	}
-	else {
-	int size = num / 3;
-
-	for ()
-}
+	recur(0, 0, N);
 }
