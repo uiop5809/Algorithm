@@ -11,36 +11,58 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
+string str;
+stack <char> s;
+
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
 
-	string g;
-	cin >> g;
+	cin >> str;
 
-	stack <char> s;
-
-	for (int i = 0; i < g.length(); i++) {
-		char c = g[i];
-
-		if (g[i] == '(') {
+	int answer = 0, temp = 1;
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] == '(') {
+			temp *= 2;
 			s.push('(');
 		}
-		else if (s.top() == ')') {
-			s.pop();
-		}
-		else if (g[i] == '[') {
+		else if (str[i] == '[') {
+			temp *= 3;
 			s.push('[');
 		}
-		else if(s.top() == ']') {
-			s.pop();
+		else if (str[i] == ')') {
+			if (s.empty() || s.top() != '(') { //올바르지 못함
+				answer = 0;
+				break;
+			}
+			if (str[i - 1] == '(') {
+				answer += temp;
+				temp /= 2;
+				s.pop();
+			}
+			else {
+				temp /= 2;
+				s.pop();
+			}
+		}
+		else if (str[i] == ']') {
+			if (s.empty() || s.top() != '[') {
+				answer = 0;
+				break;
+			}
+			if (str[i - 1] == '[') {
+				answer += temp;
+				temp /= 3;
+				s.pop();
+			}
+			else {
+				temp /= 3;
+				s.pop();
+			}
 		}
 	}
-
-	if (s.empty()) {
-
+	if (!s.empty()) {
+		answer = 0;
 	}
-	else {
-		cout << 0;
-	}
+	cout << answer;
 }
