@@ -11,16 +11,33 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
-int dp[100001], N;
+#define MOD 1000000000;
 
-int main() {
-	cin >> N;
+//dp[a][b] = c
+//a개 더해서 합이 b가 되는 경우의 수 c
 
-	for (int i = 1; i <= N; i++) {
-		dp[i] = i;
-		for (int j = 1; j * j <= i; j++) {
-			dp[i] = min(dp[i], dp[i - j * j] + 1);
+int N, K;
+long long dp[201][201];
+
+long long dynamic(int n, int k) {
+	for (int i = 0; i <= n; i++) {
+		dp[1][i] = 1;
+	}
+
+	for (int i = 2; i <= k; i++) { //k개 더해서
+		for (int j = 0; j <= n; j++) { //n 만드는
+			for (int k = 0; k <= j; k++) { //경우의 수
+				dp[i][j] = (dp[i][j] + dp[i - 1][k]) % MOD;
+			}
 		}
 	}
-	cout << dp[N];	
+	return dp[k][n];
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+
+	cin >> N >> K;
+	cout << dynamic(N, K);
 }
