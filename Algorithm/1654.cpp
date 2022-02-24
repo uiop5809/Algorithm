@@ -13,38 +13,39 @@ using namespace std;
 
 typedef long long ll;
 
-ll K, N, lan_max = 0;
-ll lan_len[10001];
+ll K, N, lan[10001];
+ll res = 0;
 
 ll binary_search(ll left, ll right) {
-	//최적의 해 (만들 수 있는 랜선의 수)
 	while (left <= right) {
 		ll mid = (left + right) / 2;
-		int cutting = 0; //자르기
+		int cnt = 0;
+
 		for (int i = 0; i < K; i++) {
-			cutting += lan_len[i] / mid;
+			cnt += lan[i] / mid;
 		}
-		if (N <= cutting) { //만들 수 있는 랜선 수가 N보다 많기 때문에 자르기 늘림
-			lan_max = max(lan_max, mid); //가장 긴 랜선길이 업데이트
+		if (N <= cnt) {
+			res = max(res, mid);
 			left = mid + 1;
 		}
-		else { //만들 수 있는 랜선수가 N보다 적기 때문에 랜선수 줄임
+		else {
 			right = mid - 1;
 		}
 	}
-	return lan_max; //가능한 랜선들 중 가장 긴 랜선
+	return res;
 }
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);cout.tie(NULL);
 
+	ll max = 0;
 	cin >> K >> N;
-	ll lan = 0;
 	for (int i = 0; i < K; i++) {
-		cin >> lan_len[i];
-		lan = max(lan, lan_len[i]); // 최대 랜선 길이
+		cin >> lan[i];
+		if (max < lan[i]) {
+			max = lan[i];
+		}
 	}
-	cout << binary_search(1, lan);
-	//left = 1, right = 최대 랜선 길이
+	cout << binary_search(1, max);
 }
