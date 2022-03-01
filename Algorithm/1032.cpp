@@ -18,6 +18,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		cin >> str[i];
 	}
+
 	for (int i = 0; i < str[0].length(); i++) {
 		char c = str[0][i];
 		for (int j = 0; j < n; j++) {
