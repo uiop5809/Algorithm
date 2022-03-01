@@ -19,7 +19,7 @@ int main() {
 	cin >> N;
 	
 	stack <pair <int, int>> s;
-	vector <int> res(N+1);
+	vector <int> res(N + 1);
 
 	for (int i = 1; i <= N; i++) {
 		cin >> num;
@@ -29,7 +29,7 @@ int main() {
 		}
 		else {
 			while (!s.empty() && s.top().second < num) {
-				res[s.top().second] = num;
+				res[s.top().first] = num;
 				s.pop();
 			}
 			s.push({i, num});
@@ -37,13 +37,11 @@ int main() {
 	}
 
 	while (!s.empty()) {
-		auto top = s.top();
+		res[s.top().first] = -1;
 		s.pop();
-
-		res[top.second] = -1;
 	}
 
-	for (auto it : res) {
-		cout << it << " ";
+	for (int i = 1; i < res.size(); i++) {
+		cout << res[i] << " ";
 	}
 }
