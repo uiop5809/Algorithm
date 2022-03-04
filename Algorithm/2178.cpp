@@ -15,7 +15,7 @@ int arr[101][101];
 int c[101][101];
 int N, M, cnt;
 
-queue<pair<int, int>> q;
+queue <pair<int, int>> q;
 
 int dx[4] = { 0, 1, 0, -1 };
 int dy[4] = { 1, 0, -1, 0 };
