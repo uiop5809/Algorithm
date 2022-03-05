@@ -11,50 +11,49 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
-int N, M, x, y, cnt;
-int c[1001];
+int n, n1, n2, m, cnt;
+int dist[101];
 
-vector <int> v[1001];
+vector <int> v[101];
 
 void edge(int x, int y) {
 	v[x].push_back(y);
 	v[y].push_back(x);
 }
 
-void dfs(int n) {
+int bfs(int start, int end) {
 	queue <int> q;
-	q.push(n);
-	c[n] = 1;
+	q.push(start);
 
 	while (!q.empty()) {
 		int now = q.front();
 		q.pop();
-		
+
+		if (now == end) {
+			return dist[end];
+		}
 		for (int i = 0; i < v[now].size(); i++) {
 			int next = v[now][i];
 
-			if (!c[next]) {
+			if (!dist[next]) {
 				q.push(next);
-				c[next] = 1;
+				dist[next] = dist[now] + 1;
 			}
 		}
 	}
-	cnt++;
+	return -1;
 }
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
 
-	cin >> N >> M;
-	for (int i = 0; i < M; i++) {
+	cin >> n >> n1 >> n2 >> m;
+
+	int x, y;
+	for (int i = 0; i < m; i++) {
 		cin >> x >> y;
 		edge(x, y);
 	}
-	for (int i = 1; i <= N; i++){
-		if (!c[i]) {
-			dfs(i);
-		}
-	}
-	cout << cnt;
+	cout << bfs(n1, n2);
 }
