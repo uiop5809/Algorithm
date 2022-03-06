@@ -11,48 +11,47 @@
 #pragma warning(disable : 4996)
 using namespace std;
 
-int arr[101][101];
-int c[101][101];
-int N, M, cnt;
+int N, M;
+int num[101][101];
+int dist[101][101];
 
-queue <pair<int, int>> q;
+queue <pair <int, int>> q;
 
-int dx[4] = { 0, 1, 0, -1 };
-int dy[4] = { 1, 0, -1, 0 };
+int dx[4] = { 1, 0, -1, 0 };
+int dy[4] = { 0, -1, 0, 1 };
 
-void bfs(int a, int b) {
-    q.push({ a, b });
-    c[a][b]++;
+void bfs(int x, int y) {
+	q.push({ x, y });
+	dist[x][y]++;
 
-    while (!q.empty()) {
-        int x = q.front().first;
-        int y = q.front().second;
-        q.pop();
+	while (!q.empty()) {
+		x = q.front().first;
+		y = q.front().second;
 
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
+		q.pop();
+		for (int i = 0; i < 4; i++) {
+			int nx = x + dx[i];
+			int ny = y + dy[i];
 
-            if (nx <= 0 || nx > N || ny <= 0 || ny > M) 
-                continue;
-            if (c[nx][ny] == 0 && arr[nx][ny] == 1) {
-                c[nx][ny] = c[x][y] + 1;
-                q.push({ nx, ny });
-            }
-        }
-    }
+			if (nx < 1 || nx > N || ny < 1 || ny > M)
+				continue;
+			if (dist[nx][ny] == 0 && num[nx][ny] == 1) {
+				q.push({ nx, ny });
+				dist[nx][ny] = dist[x][y] + 1;
+			}
+		}
+	}
 }
 
 int main() {
-    cin >> N >> M;
-    for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= M; j++) {
-            scanf("%1d", &arr[i][j]);
-        }
-    }
+	cin >> N >> M;
+	for (int i = 1; i <= N; i++) {
+		for (int j = 1; j <= M; j++) {
+			scanf("%1d", &num[i][j]);
+		}
+	}
+	bfs(1, 1);
+	cout << dist[N][M] << "\n";
 
-    bfs(1, 1);
-    cout << c[N][M] << '\n';
-
-    return 0;
+	return 0;
 }
