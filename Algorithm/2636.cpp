@@ -50,7 +50,7 @@ bool bfs(int x, int y) {
 		}
 	}
 	if (cnt == 0) {
-		cout << --t << "\n" << res;
+		cout << t - 1 << "\n" << res;
 		return true;
 	}
 	else {
