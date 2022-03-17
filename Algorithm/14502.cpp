@@ -83,6 +83,7 @@ int main() {
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= M; j++) {
 			cin >> num[i][j];
+
 			if (num[i][j] == 2) {
 				v.push_back({ i, j });
 			}
