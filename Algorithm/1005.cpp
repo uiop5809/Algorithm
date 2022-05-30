@@ -2,11 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <cstring>
-#include <stack>
 #include <queue>
-#include <cmath>
-#define _CRT_SECURE_NO_WARNINGS
-#pragma warning(disable : 4996)
 using namespace std;
 
 int T, N, K, x, y, W;
