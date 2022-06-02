@@ -1191,6 +1191,9 @@
     <ClCompile Include="2529.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1747.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="소스.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
