@@ -1,13 +1,10 @@
 #include <iostream>
-#include <algorithm>
-#include <cmath>
 using namespace std;
 
-int N, S, num[21], cnt;
+int N, S, num[21], res;
 
 void dfs(int sum, int input) {
-	if (sum == S && input != 0) cnt++;
-	if (input == N) return;
+	if (sum == S && input != 0) res++;
 	for (int i = input; i < N; i++) {
 		dfs(sum + num[i], i + 1);
 	}
@@ -22,4 +19,5 @@ int main() {
 		cin >> num[i];
 	}
 	dfs(0, 0);
+	cout << res;
 }
