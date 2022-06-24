@@ -1236,5 +1236,11 @@
     <ClCompile Include="5032.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2812.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="5354.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
