@@ -1,2 +1,2 @@
 # Algorithm
-Baekjoon Algorithm.
+Baekjoon Algorithm
